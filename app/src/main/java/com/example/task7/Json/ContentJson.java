@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentJson {
-
+   public int curPage;
    public int errorCode;
    public String errorMsg;
    public List<ContentDataBean> datas;
 
 
     public static class ContentDataBean {
+
 
         public String author;
         public String link;
@@ -37,6 +38,7 @@ public class ContentJson {
             } else {
                 result.datas = new ArrayList<>();
                 JSONObject data = jsonObject.getJSONObject("data");
+                result.curPage=data.getInt("curPage");
                 JSONArray datas = data.getJSONArray("datas");
                 ContentDataBean contentDataBean;
 

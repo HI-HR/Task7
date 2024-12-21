@@ -56,12 +56,14 @@ public class LoginActivity extends AppCompatActivity {
         mEtPassword = findViewById(R.id.et_login_password);
         mTvReg = findViewById(R.id.tv_login_reg);
         mCkRemember = findViewById(R.id.ck_login_remember);
+        SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
+        mCkRemember.setChecked(sharedPreferences.getBoolean("check",false));
+
         mTvForget = findViewById(R.id.tv_login_forget);
     }
 
     private void initEvent() {
         displaySavedPassword();
-
 
 
         mBtnLogin.setOnClickListener(v -> login());
@@ -86,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
      * 登录业务
      */
     private void login() {
-        shouldRememberPassword = mCkRemember.isChecked();
         username = mEtUsername.getText().toString();
         password = mEtPassword.getText().toString();
 
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MyAppPreferences", MODE_PRIVATE);
         String savedUsername = sharedPreferences.getString("username", null);
         String savedPassword = sharedPreferences.getString("password", null);
+
         if (savedUsername != null && savedPassword != null) {
             mEtUsername.setText(savedUsername);
             mEtPassword.setText(savedPassword);
@@ -118,13 +120,15 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("MyAppPreferences", MODE_PRIVATE).edit();
         editor.putString("username", username);
         editor.putString("password", password);
-        editor.apply();
+        editor.putBoolean("check", shouldRememberPassword);//勾选的状态
+        editor.commit();
     }
 
     private void clearSaved() {
         SharedPreferences.Editor editor = getSharedPreferences("MyAppPreferences", MODE_PRIVATE).edit();
         //editor.remove("username");
         editor.remove("password");
+        editor.putBoolean("check", shouldRememberPassword);
         editor.apply();
     }
 
@@ -132,9 +136,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         shouldRememberPassword = mCkRemember.isChecked();
-        if (!shouldRememberPassword){
-            clearSaved();
-        }
+
         displaySavedPassword();
     }
 
@@ -163,6 +165,8 @@ public class LoginActivity extends AppCompatActivity {
                         shouldRememberPassword = mCkRemember.isChecked();
                         if (shouldRememberPassword){
                             rememberPassword(username,password);
+                        }else {
+                            clearSaved();
                         }
                         Log.d("ld",loginJson.data.id+loginJson.data.publicName);
                         Intent intent =new Intent(LoginActivity.this, HomeActivity.class);

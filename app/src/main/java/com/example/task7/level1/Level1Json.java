@@ -30,10 +30,10 @@ public class Level1Json {
         public int visible;
 
     }
-    
-    public static Level1Json decodeJson(String json){
-        Level1Json result =new Level1Json();
-        result.data=new ArrayList<>() ;
+
+    public static Level1Json decodeJson(String json) {
+        Level1Json result = new Level1Json();
+        result.data = new ArrayList<>();
         Level1JsonDataBean dataBean;
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -41,13 +41,13 @@ public class Level1Json {
             for (int i = 0; i < jsonArray.length(); i++) {
                 dataBean = new Level1JsonDataBean();
                 JSONObject dataObj = jsonArray.getJSONObject(i);
-                dataBean.cover=dataObj.getString("cover");
-                dataBean.author=dataObj.getString("author");
-                dataBean.desc=dataObj.getString("desc");
-                dataBean.name=dataObj.getString("name");
+                dataBean.cover = dataObj.getString("cover");
+                dataBean.author = dataObj.getString("author");
+                dataBean.desc = dataObj.getString("desc");
+                dataBean.name = dataObj.getString("name");
                 result.data.add(dataBean);
             }
-            
+
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

@@ -9,13 +9,11 @@ import org.json.JSONObject;
 public class LoginJson {
 
 
-
     public LoginDataBean data;
 
     public int errorCode;//0成功,-1失败
 
     public String errorMsg;
-
 
 
     public static class LoginDataBean {
@@ -50,21 +48,20 @@ public class LoginJson {
 
     }
 
-    public static LoginJson decodeJson(String json){
-        LoginJson result =new LoginJson() ;
+    public static LoginJson decodeJson(String json) {
+        LoginJson result = new LoginJson();
         try {
             JSONObject jsonObject = new JSONObject(json);
-            result.errorCode=jsonObject.getInt("errorCode");
-            result.errorMsg=jsonObject.getString("errorMsg");
-            if (result.errorCode==-1){
+            result.errorCode = jsonObject.getInt("errorCode");
+            result.errorMsg = jsonObject.getString("errorMsg");
+            if (result.errorCode == -1) {
 
-            }else{
-                result.data=new LoginDataBean();
+            } else {
+                result.data = new LoginDataBean();
                 JSONObject jsonObjectData = jsonObject.getJSONObject("data");
-                result.data.publicName=jsonObjectData.getString("publicName");
-                Log.d("ld",result.data.publicName);
+                result.data.publicName = jsonObjectData.getString("publicName");
+                Log.d("ld", result.data.publicName);
             }
-
 
 
         } catch (Exception e) {

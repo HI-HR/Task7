@@ -1,6 +1,5 @@
-package com.example.task7.Home;
+package com.example.task7.Home.FragmentSecond;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.task7.Json.TutorialJson;
 import com.example.task7.R;
-import com.example.task7.WebActivity;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

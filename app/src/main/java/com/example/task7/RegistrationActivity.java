@@ -1,7 +1,5 @@
 package com.example.task7;
 
-import static com.example.task7.Util.NetUtil.doPost;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,16 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.task7.Util.LoginJson;
 import com.example.task7.Util.NetUtil;
-import com.example.task7.level1.Level1Activity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,19 +25,19 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText mEtPassword;
     private EditText mEtUsername;
     private EditText mEtRepassword;
-    private Handler handler = new Handler(Looper.myLooper()){
+    private Handler handler = new Handler(Looper.myLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             LoginJson loginJson = LoginJson.decodeJson((String) msg.obj);//将注册返回的JOSN数据转换为loginjson类
-            if (loginJson.errorCode==-1){
+            if (loginJson.errorCode == -1) {
                 mEtPassword.setText("");
                 mEtRepassword.setText("");
-                Toast.makeText(RegistrationActivity.this ,loginJson.errorMsg,Toast.LENGTH_SHORT).show();
-            }else{
-                Log.d("ld",loginJson.data.id+loginJson.data.publicName);
-                Intent intent =new Intent(RegistrationActivity.this, LoginActivity.class);
-                Toast.makeText(RegistrationActivity.this,"注册成功，请登录",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, loginJson.errorMsg, Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("ld", loginJson.data.id + loginJson.data.publicName);
+                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                Toast.makeText(RegistrationActivity.this, "注册成功，请登录", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
 
@@ -80,21 +73,21 @@ public class RegistrationActivity extends AppCompatActivity {
     /***
      * 注册业务
      */
-    private void doReg(){
+    private void doReg() {
         String username = mEtUsername.getText().toString();
         String password = mEtPassword.getText().toString();
         String repassword = mEtRepassword.getText().toString();
 
 
         //输入账号不为空,密码不为空
-        if (username.length()>=3 && password.length()>=6) {
-            Map<String,String> map = new HashMap<>();
-            map.put("username",username);
-            map.put("password",password);
-            map.put("repassword",repassword);
+        if (username.length() >= 3 && password.length() >= 6) {
+            Map<String, String> map = new HashMap<>();
+            map.put("username", username);
+            map.put("password", password);
+            map.put("repassword", repassword);
             NetUtil.doPost("https://www.wanandroid.com/user/register", map, handler);
-        }else{
-            Toast.makeText(RegistrationActivity.this,"用户名不少于3位，密码不得短于6位",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(RegistrationActivity.this, "用户名不少于3位，密码不得短于6位", Toast.LENGTH_SHORT).show();
         }
     }
 }

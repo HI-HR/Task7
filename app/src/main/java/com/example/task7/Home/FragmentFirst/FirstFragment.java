@@ -1,4 +1,4 @@
-package com.example.task7.Home;
+package com.example.task7.Home.FragmentFirst;
 
 
 import android.os.Bundle;
@@ -28,19 +28,19 @@ public class FirstFragment extends Fragment {
     private RecyclerView mRv;
     private Handler handler = new MyHandler();
     private List<ContentJson.ContentDataBean> mList;
-    private EditText mEditPage ;
+    private EditText mEditPage;
     private Button mBtnJump;
     private TextView mPage;
 
 
-    class MyHandler extends  Handler{
+    class MyHandler extends Handler {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             ContentJson contentJson = ContentJson.decodeJson((String) msg.obj);
             mPage.setText(String.valueOf(contentJson.curPage));
             mRv.setAdapter(new FragmentFirstAdapter(contentJson.datas));
-            mRv.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+            mRv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         }
     }
 
@@ -68,22 +68,21 @@ public class FirstFragment extends Fragment {
         mBtnJump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEditPage.getText().length()==0){
-                    Toast.makeText(getContext(),"输入不能为空",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (mEditPage.getText().length() == 0) {
+                    Toast.makeText(getContext(), "输入不能为空", Toast.LENGTH_SHORT).show();
+                } else {
                     int page = Integer.parseInt(mEditPage.getText().toString());
-                    if (page>0&&page<796){
+                    if (page > 0 && page < 796) {
                         mEditPage.setText("");
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                NetUtil.doGet("https://www.wanandroid.com/article/list/"+(page-1)+"/json", handler);
+                                NetUtil.doGet("https://www.wanandroid.com/article/list/" + (page - 1) + "/json", handler);
                             }
                         }).start();
 
-                    }else{
-                        Toast.makeText(getContext(),"输入不合法",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "输入不合法", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -103,10 +102,10 @@ public class FirstFragment extends Fragment {
     }
 
     private void initView(View view) {
-        mRv=view.findViewById(R.id.rv1);
-        mBtnJump=view.findViewById(R.id.btn_fragment_first_jump);
-        mEditPage=view.findViewById(R.id.et_fragment_first_page);
-        mPage =view.findViewById(R.id.tv_page);
+        mRv = view.findViewById(R.id.rv1);
+        mBtnJump = view.findViewById(R.id.btn_fragment_first_jump);
+        mEditPage = view.findViewById(R.id.et_fragment_first_page);
+        mPage = view.findViewById(R.id.tv_page);
     }
 
 

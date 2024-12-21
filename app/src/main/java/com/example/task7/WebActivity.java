@@ -1,6 +1,5 @@
 package com.example.task7;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class WebActivity extends AppCompatActivity {
     private WebView mWeb;
     private String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,27 +22,26 @@ public class WebActivity extends AppCompatActivity {
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
 
-            mWeb.setWebViewClient(new WebViewClient());
-            mWeb.loadUrl(url);
+        mWeb.setWebViewClient(new WebViewClient());
+        mWeb.loadUrl(url);
     }
 
     private void initData() {
-        Intent intent =getIntent();
-        url=intent.getStringExtra("URL");
+        Intent intent = getIntent();
+        url = intent.getStringExtra("URL");
 
     }
 
     private void initView() {
-        mWeb=findViewById(R.id.webview);
+        mWeb = findViewById(R.id.webview);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (mWeb.canGoBack()){
+        if (mWeb.canGoBack()) {
             mWeb.goBack();
-        }
-        else{
+        } else {
             finish();
         }
     }

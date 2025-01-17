@@ -1,4 +1,4 @@
-package com.example.task7.Home;
+package com.example.task7.FragmnetFirst;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.task7.FragmentSecond.FragmentSecondAdapter;
 import com.example.task7.Json.TutorialJson;
 import com.example.task7.R;
 import com.example.task7.Util.NetUtil;

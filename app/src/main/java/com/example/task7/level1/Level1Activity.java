@@ -10,7 +10,6 @@ import com.example.task7.R;
 public class Level1Activity extends AppCompatActivity {
     private ViewPager2 mVp2;
     private Level1Json mData;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +130,6 @@ public class Level1Activity extends AppCompatActivity {
     }
 
     private void initView() {
-        mVp2 = findViewById(R.id.vp2_level1);
+        mVp2=findViewById(R.id.vp2_level1);
     }
 }

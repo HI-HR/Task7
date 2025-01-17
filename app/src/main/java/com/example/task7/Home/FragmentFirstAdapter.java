@@ -1,9 +1,10 @@
-package com.example.task7.Home.FragmentFirst;
+package com.example.task7.Home;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.task7.Json.ContentJson;
 import com.example.task7.R;
 import com.example.task7.WebActivity;
+import com.example.task7.level1.Level1Json;
 
 import java.util.List;
 
-public class FragmentFirstAdapter extends RecyclerView.Adapter<FragmentFirstAdapter.ViewHolder> {
+public class FragmentFirstAdapter extends RecyclerView.Adapter<FragmentFirstAdapter.ViewHolder>{
     private List<ContentJson.ContentDataBean> mList;
 
     public FragmentFirstAdapter(List<ContentJson.ContentDataBean> mList) {
@@ -53,7 +55,7 @@ public class FragmentFirstAdapter extends RecyclerView.Adapter<FragmentFirstAdap
         return mList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder{
         private TextView mTitle;
         private TextView mSuperChapter;
         private TextView mAuthor;
@@ -62,11 +64,11 @@ public class FragmentFirstAdapter extends RecyclerView.Adapter<FragmentFirstAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.tv_content_title);
-            mAuthor = itemView.findViewById(R.id.tv_content_author);
-            mDate = itemView.findViewById(R.id.tv_content_date);
-            mSuperChapter = itemView.findViewById(R.id.tv_content_superChapter);
-            this.itemView = itemView;
+            mTitle=itemView.findViewById(R.id.tv_content_title);
+            mAuthor=itemView.findViewById(R.id.tv_content_author);
+            mDate=itemView.findViewById(R.id.tv_content_date);
+            mSuperChapter= itemView.findViewById(R.id.tv_content_superChapter);
+            this.itemView=itemView;
         }
     }
 }

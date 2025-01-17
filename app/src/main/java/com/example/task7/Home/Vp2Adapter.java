@@ -13,7 +13,7 @@ public class Vp2Adapter extends FragmentStateAdapter {
 
     public Vp2Adapter(@NonNull FragmentActivity fragmentActivity, ArrayList<FragmentInterface> fragments) {
         super(fragmentActivity);
-        this.fragments = fragments;
+        this.fragments =fragments;
     }
 
 

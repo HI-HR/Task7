@@ -31,9 +31,9 @@ public class TutorialJson {
 
     }
 
-    public static TutorialJson decodeJson(String json) {
-        TutorialJson result = new TutorialJson();
-        result.data = new ArrayList<>();
+    public static TutorialJson decodeJson(String json){
+        TutorialJson result =new TutorialJson();
+        result.data=new ArrayList<>() ;
         TutorialJson.TutorialJsonDataBean dataBean;
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -41,10 +41,10 @@ public class TutorialJson {
             for (int i = 0; i < jsonArray.length(); i++) {
                 dataBean = new TutorialJson.TutorialJsonDataBean();
                 JSONObject dataObj = jsonArray.getJSONObject(i);
-                dataBean.cover = dataObj.getString("cover");
-                dataBean.author = dataObj.getString("author");
-                dataBean.desc = dataObj.getString("desc");
-                dataBean.name = dataObj.getString("name");
+                dataBean.cover=dataObj.getString("cover");
+                dataBean.author=dataObj.getString("author");
+                dataBean.desc=dataObj.getString("desc");
+                dataBean.name=dataObj.getString("name");
                 result.data.add(dataBean);
             }
 
